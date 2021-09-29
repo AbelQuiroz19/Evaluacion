@@ -18,25 +18,27 @@
         tools:layout_editor_absoluteY="-60dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activity_history_field_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_history_field_date"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:hint="Fecha:" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activity_history_field_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_history_field_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Peso:"/>
@@ -44,12 +46,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activity_history_field_imc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_history_field_imc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Su imc es:" />

@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evaluacion">
         <activity
-            android:name=".ConsultActivity"
+            android:name=".User"
+            android:exported="true" />
+        <activity
+            android:name=".AuthController"
             android:exported="true" />
         <activity
             android:name=".HistoryActivity"
