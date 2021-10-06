@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.evaluacion.models.Task;
+import com.example.evaluacion.models.Evaluation;
 import com.example.evaluacion.ui.DatePickerFragment;
-import com.example.evaluacion.ui.TaskEvaluationAdapter;
+import com.example.evaluacion.ui.EvaluationAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnInsert;
     private Button btnClose;
     private TextInputLayout tilDateOne, tilDateTwo;
-    private ListView LvTasks;
+    private ListView LvEvaluations;
 
-    private List<Task> taskList = new ArrayList<>();
+    private List<Evaluation> evaluationList = new ArrayList<>();
 
 
     @Override
@@ -34,20 +34,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LvTasks = findViewById(R.id.activity_main_lv_tasks);
+        LvEvaluations = findViewById(R.id.activity_main_lv_evaluations);
         btnConsult = findViewById(R.id.main_activity_btn_consult);
         tilDateOne = findViewById(R.id.DateOne);
         tilDateTwo = findViewById(R.id.DateTwo);
 
         for (int x = 0; x < 10; ++x) {
-            Task newTask = new Task(String.format("Title %d", x), String.format("Description %d", x));
-            newTask.setId(x);
-            taskList.add(newTask);
+            Evaluation newEvaluation = new Evaluation(String.format("Altura: %d", x), String.format("Peso: %d", x));
+            newEvaluation.setId(x);
+            evaluationList.add(newEvaluation);
         }
 
-        TaskEvaluationAdapter adapter = new TaskEvaluationAdapter(this, taskList);
+        EvaluationAdapter adapter = new EvaluationAdapter(this, evaluationList);
 
-        LvTasks.setAdapter(adapter);
+        LvEvaluations.setAdapter(adapter);
+
+        LvEvaluations.setOnItemClickListener(((adapterView, view, index, id) -> {
+
+            Evaluation evaluation = evaluationList.get(index);
+
+            Intent i = new Intent(view.getContext(), DetailActivity.class);
+            i.putExtra("evaluation", evaluation);
+            view.getContext().startActivity(i);
+
+        }));
 
         btnConsult.setOnClickListener(view -> {
             Toast.makeText(view.getContext(), "consultando", Toast.LENGTH_SHORT).show();

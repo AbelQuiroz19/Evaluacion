@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.evaluacion.models.User;
 import com.example.evaluacion.ui.DatePickerFragment;
 import com.google.android.material.textfield.TextInputLayout;
 

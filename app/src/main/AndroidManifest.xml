@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evaluacion">
         <activity
-            android:name=".User"
-            android:exported="true" />
-        <activity
-            android:name=".AuthController"
-            android:exported="true" />
-        <activity
             android:name=".HistoryActivity"
             android:exported="true" />
         <activity
@@ -29,6 +23,9 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DetailActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

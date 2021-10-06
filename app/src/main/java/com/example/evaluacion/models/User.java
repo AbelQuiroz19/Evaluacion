@@ -1,4 +1,4 @@
-package com.example.evaluacion;
+package com.example.evaluacion.models;
 
 import java.util.Date;
 
@@ -6,14 +6,14 @@ public class User {
     private long id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String username;
     private Date birthday;
     private String password;
 
-    public User(String firstName, String lastName, String email, Date birthday) {
+    public User(String firstName, String lastName, String username, Date birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.username = username;
         this.birthday = birthday;
     }
 
@@ -33,8 +33,8 @@ public class User {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public Date getBirthday() {

@@ -19,7 +19,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_login_field_email"
+            android:id="@+id/activity_login_field_Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
@@ -28,7 +28,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="email"
+                android:hint="Nombre de usuario"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 

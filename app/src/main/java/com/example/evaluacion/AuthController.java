@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.example.evaluacion.models.User;
+
 
 public class AuthController {
     private Context ctx;
@@ -14,7 +16,7 @@ public class AuthController {
     }
 
     public void register(User user) {
-        Toast.makeText(ctx, String.format("Usuario %s registrado", user.getEmail()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ctx, String.format("Usuario %s registrado", user.getUsername()), Toast.LENGTH_SHORT).show();
         Intent i = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(i);
     }

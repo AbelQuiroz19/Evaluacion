@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin, btnRegister;
-    private TextInputLayout tilEmail, tilPassword;
+    private TextInputLayout tilUsername, tilPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +22,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         btnRegister = findViewById(R.id.activity_login_btn_register);
         btnLogin = findViewById(R.id.activity_login_btn_log);
-        tilEmail = findViewById(R.id.activity_login_field_email);
+        tilUsername = findViewById(R.id.activity_login_field_Username);
         tilPassword = findViewById(R.id.activity_login_field_password);
         btnLogin.setOnClickListener(view -> {
             Toast.makeText(view.getContext(), "Iniciando sesión", Toast.LENGTH_SHORT).show();
-            String email = tilEmail.getEditText().getText().toString();
+            String username = tilUsername.getEditText().getText().toString();
             String password = tilPassword.getEditText().getText().toString();
-            boolean emailValid = !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+            boolean UserNameValid = !username.isEmpty();
             boolean passwordValid = !password.isEmpty();
-            if (!emailValid) {
-                tilEmail.setError("El email es inválido");
+            if (!UserNameValid) {
+                tilUsername.setError("El nombre de usuario es inválido");
             } else {
-                tilEmail.setError(null);
-                tilEmail.setErrorEnabled(false);
+                tilUsername.setError(null);
+                tilUsername.setErrorEnabled(false);
             }
             if (!passwordValid) {
                 tilPassword.setError("Campo requerido");
@@ -43,17 +43,17 @@ public class LoginActivity extends AppCompatActivity {
                 tilPassword.setErrorEnabled(false);
             }
 
-            if (password.equals("123456") && emailValid && passwordValid) {
-                Toast.makeText(view.getContext(), String.format("Bienvenido %s", email), Toast.LENGTH_SHORT).show();
+            if (password.equals("123456") && UserNameValid && passwordValid) {
+                Toast.makeText(view.getContext(), String.format("Bienvenido %s", username), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(view.getContext(), MainActivity.class);
                 startActivity(i);
                 finish();
             } else {
-                Toast.makeText(view.getContext(), String.format("La contraseña es incorrecta", email), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), String.format("La contraseña es incorrecta", username), Toast.LENGTH_SHORT).show();
             }
-            if (emailValid && passwordValid) {
+            if (UserNameValid && passwordValid) {
                 AuthController controller = new AuthController(view.getContext());
-                controller.login(email, password);
+                controller.login(username, password);
             } else {
                 Toast.makeText(view.getContext(), "Campos inválidos", Toast.LENGTH_SHORT).show();
             }
