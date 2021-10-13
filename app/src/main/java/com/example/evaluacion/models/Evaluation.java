@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Evaluation implements Serializable {
     private long id;
-    private String Height;
-    private String Weight;
+    private String height;
+    private String weight;
 
-    public Evaluation(String Height, String Weight) {
-        this.Height = Height;
-        this.Weight = Weight;
+    public Evaluation(String height, String weight) {
+        this.height = height;
+        this.weight = weight;
     }
 
     public long getId() {
@@ -21,10 +21,10 @@ public class Evaluation implements Serializable {
     }
 
     public String getHeight() {
-        return Height;
+        return height;
     }
 
     public String getWeight() {
-        return Weight;
+        return weight;
     }
 }

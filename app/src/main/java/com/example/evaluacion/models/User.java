@@ -2,7 +2,7 @@ package com.example.evaluacion.models;
 
 import java.util.Date;
 
-public class User {
+public class User implements IUser {
     private long id;
     private String firstName;
     private String lastName;

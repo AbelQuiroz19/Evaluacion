@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.evaluacion.controllers.AuthController;
 import com.example.evaluacion.models.User;
 import com.example.evaluacion.ui.DatePickerFragment;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         tilFirstName = findViewById(R.id.activity_register_field_name);
         tilLastName = findViewById(R.id.activity_register_field_apellido);
-        tilEmail = findViewById(R.id.activity_register_field_email);
+        tilEmail = findViewById(R.id.activity_register_field_username);
         tilPassword = findViewById(R.id.activity_register_field_password);
         tilBirthday = findViewById(R.id.activity_register_field_birthday);
         btnRegister = findViewById(R.id.activity_register_btn_register);
@@ -45,25 +47,66 @@ public class RegisterActivity extends AppCompatActivity {
             String password = tilPassword.getEditText().getText().toString();
             String birthday = tilBirthday.getEditText().getText().toString();
 
-            // TODO: Implementar validaciones
+            boolean firstNameValid = !firstName.isEmpty();
+            boolean lastNameValid = !lastName.isEmpty();
+            boolean emailValid = !email.isEmpty();
+            boolean passwordValid = !password.isEmpty();
+            boolean birthdayValid = !birthday.isEmpty();
 
-            SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
 
-            Date birthdayDate = null;
-            try {
-                birthdayDate = dateFormatter.parse(birthday);
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (!firstNameValid) {
+                tilFirstName.setError("Campo obligatorio");
+            } else {
+                tilFirstName.setError(null);
+                tilFirstName.setErrorEnabled(false);
+            }
+            if (!lastNameValid) {
+                tilLastName.setError("Campo obligatorio");
+            } else {
+                tilLastName.setError(null);
+                tilLastName.setErrorEnabled(false);
+            }
+            if (!emailValid) {
+                tilEmail.setError("Campo obligatorio");
+            } else {
+                tilEmail.setError(null);
+                tilEmail.setErrorEnabled(false);
+            }
+            if (!passwordValid) {
+                tilPassword.setError("Campo obligatorio");
+            } else {
+                tilPassword.setError(null);
+                tilPassword.setErrorEnabled(false);
+            }
+            if (!birthdayValid) {
+                tilBirthday.setError("Campo obligatorio");
+            } else {
+                tilBirthday.setError(null);
+                tilBirthday.setErrorEnabled(false);
             }
 
-            User user = new User(firstName, lastName, email, birthdayDate);
-            user.setPassword(password);
 
-            AuthController controller = new AuthController(view.getContext());
+            if (firstNameValid && lastNameValid && emailValid && passwordValid && birthdayValid) {
+                SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
 
-            controller.register(user);
+                Date birthdayDate = null;
+                try {
+                    birthdayDate = dateFormatter.parse(birthday);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                User user = new User(firstName, lastName, email, birthdayDate);
+                user.setPassword(password);
+
+                AuthController controller = new AuthController(view.getContext());
+
+                controller.register(user);
+            } else {
+
+                Toast.makeText(view.getContext(), "Campos inválidos", Toast.LENGTH_SHORT).show();
+            }
         });
-
 
     }
 }

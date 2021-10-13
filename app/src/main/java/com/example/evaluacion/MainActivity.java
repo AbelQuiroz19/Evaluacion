@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.evaluacion.controllers.AuthController;
 import com.example.evaluacion.models.Evaluation;
 import com.example.evaluacion.ui.DatePickerFragment;
 import com.example.evaluacion.ui.EvaluationAdapter;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnClose;
     private TextInputLayout tilDateOne, tilDateTwo;
     private ListView LvEvaluations;
+    private AuthController authController;
 
     private List<Evaluation> evaluationList = new ArrayList<>();
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         btnConsult = findViewById(R.id.main_activity_btn_consult);
         tilDateOne = findViewById(R.id.DateOne);
         tilDateTwo = findViewById(R.id.DateTwo);
+        btnClose = findViewById(R.id.main_activity_btn_close);
+
+        authController = new AuthController(this);
 
         for (int x = 0; x < 10; ++x) {
             Evaluation newEvaluation = new Evaluation(String.format("Altura: %d", x), String.format("Peso: %d", x));
@@ -81,11 +86,7 @@ public class MainActivity extends AppCompatActivity {
             DatePickerFragment.showDatePickerDialog(this, tilDateTwo, new Date());
         });
 
-        btnClose = findViewById(R.id.main_activity_btn_close);
-
-        btnClose.setOnClickListener(view -> {
-            Toast.makeText(view.getContext(), "cerrando aplicacion", Toast.LENGTH_SHORT).show();
-        });
+        btnClose.setOnClickListener(view -> { authController.logout(); });
 
 
     }

@@ -45,13 +45,13 @@ public class EvaluationAdapter extends BaseAdapter {
 
         Evaluation evaluation = evaluationList.get(i);
 
-        TextView tvTitle = view.findViewById(R.id.item_evaluation_tv_Height);
+        TextView tvHeight = view.findViewById(R.id.item_evaluation_tv_Height);
         TextView tvId = view.findViewById(R.id.item_evaluation_tv_id);
-        TextView tvDescription = view.findViewById(R.id.item_evaluation_tv_Weight);
+        TextView tvWeight = view.findViewById(R.id.item_evaluation_tv_Weight);
 
         tvId.setText(Long.toString(evaluation.getId()));
-        tvTitle.setText(evaluation.getHeight());
-        tvDescription.setText(evaluation.getWeight());
+        tvHeight.setText(evaluation.getHeight());
+        tvWeight.setText(evaluation.getWeight());
 
         return view;
 

@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,10 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Peso:"/>
+                android:hint="Peso:" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Su imc es:" />
