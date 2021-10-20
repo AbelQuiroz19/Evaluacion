@@ -24,6 +24,7 @@ public class AuthController {
     private final String KEY_USERNAME = "username";
     private final String KEY_FIRST_NAME = "userFirstName";
     private final String KEY_LAST_NAME = "userLastName";
+    private final String KEY_USER_HEIGHT = "userHeight";
 
     private Context ctx;
     private UserDao userdao;
@@ -43,6 +44,7 @@ public class AuthController {
         editor.putString(KEY_USERNAME, user.getUsername());
         editor.putString(KEY_FIRST_NAME, user.getFirstName());
         editor.putString(KEY_LAST_NAME, user.getLastName());
+        editor.putString(KEY_USER_HEIGHT, user.getHeight());
         editor.apply();
 
     }
@@ -52,8 +54,9 @@ public class AuthController {
         String firstName = preferences.getString(KEY_FIRST_NAME, "");
         String lastName = preferences.getString(KEY_LAST_NAME, "");
         String username = preferences.getString(KEY_USERNAME, "");
+        String height = preferences.getString(KEY_USER_HEIGHT, "");
 
-        User user = new User(firstName, lastName, username, new Date());
+        User user = new User(firstName, lastName, username, new Date(), height);
         user.setId(id);
 
         return user;
@@ -83,6 +86,11 @@ public class AuthController {
 
     public void login(String email, String password) {
         UserEntity userEntity = userdao.findByUsername(email);
+
+        if (userEntity == null){
+            Toast.makeText(ctx, "Datos invalidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
         User user = new UserMapping(userEntity).toBase();
 
         if (BCrypt.checkpw(password, user.getPassword())) {
@@ -92,7 +100,7 @@ public class AuthController {
             ctx.startActivity(i);
             ((Activity) ctx).finish();
         } else {
-            Toast.makeText(ctx, String.format("La contraseña es incorrecta", email), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, "Datos invalidos", Toast.LENGTH_SHORT).show();
         }
     }
     public void logout() {

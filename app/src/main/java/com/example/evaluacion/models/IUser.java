@@ -9,5 +9,6 @@ public interface IUser {
     String getUsername();
     Date getBirthday();
     String getPassword();
+    String getHeight();
 
 }

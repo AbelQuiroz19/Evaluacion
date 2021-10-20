@@ -9,12 +9,14 @@ public class User implements IUser {
     private String username;
     private Date birthday;
     private String password;
+    private String height;
 
-    public User(String firstName, String lastName, String username, Date birthday) {
+    public User(String firstName, String lastName, String username, Date birthday, String height) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.birthday = birthday;
+        this.height = height;
     }
 
     public long getId() {
@@ -40,6 +42,8 @@ public class User implements IUser {
     public Date getBirthday() {
         return birthday;
     }
+
+    public String getHeight() { return height; }
 
     public String getPassword() {
         return password;

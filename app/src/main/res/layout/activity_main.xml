@@ -21,6 +21,15 @@
             android:paddingBottom="32dp">
 
 
+            <TextView
+                android:id="@+id/activity_main_clear_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Limpiar filtro"
+                android:textColor="@color/purple_700" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -28,7 +37,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/DateOne"
+                    android:id="@+id/activity_main_DateOne"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp">
@@ -41,7 +50,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/DateTwo"
+                    android:id="@+id/activity_main_DateTwo"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content">
 

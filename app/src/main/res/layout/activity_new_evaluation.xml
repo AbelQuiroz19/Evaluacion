@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".NewEvaluationActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +19,16 @@
             android:paddingRight="16dp"
             android:paddingBottom="32dp">
 
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nueva evaluacion: "
+                tools:ignore="MissingConstraints" />
+
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_name"
+                android:id="@+id/activity_new_evaluation_field_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
@@ -28,13 +36,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre"
-                    android:inputType="textCapWords" />
+                    android:hint="Peso:" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_apellido"
+                android:id="@+id/activity_new_evaluation_field_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
@@ -42,70 +49,36 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Apellido"
-                    android:inputType="textCapWords" />
-
+                    android:hint="Altura: " />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_username"
+                android:id="@+id/activity_new_evaluation_field_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=" email o username"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:hint="fecha nacimiento" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Contraseña"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/activity_register_field_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Altura"
-                    android:inputType="textCapWords" />
+                    android:hint="Fecha:" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/activity_register_btn_register"
+                android:id="@+id/activity_new_evaluation_btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registrar" />
+
+            <Button
+                android:id="@+id/activity_new_evaluation_btn_goBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volver" />
+
         </LinearLayout>
     </ScrollView>
 

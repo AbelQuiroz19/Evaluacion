@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HistoryActivity">
+    tools:context=".NewEvaluationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,47 +21,40 @@
             android:id="@+id/activity_detail_tv_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID evaluation" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_detail_field_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="10dp"
+            android:text="ID evaluation: " />
 
             <TextView
-
+                android:id="@+id/activity_detail_field_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:focusable="false"
-                android:hint="Altura:" />
+                android:hint="Altura: " />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_detail_field_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
 
             <TextView
+                android:id="@+id/activity_detail_field_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Peso:" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_detail_field_imc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+                android:layout_marginBottom="10dp"
+                android:hint="Peso: " />
 
             <TextView
+                android:id="@+id/activity_detail_field_imc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Su imc es:" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="10dp"
+                android:hint="Su imc es: " />
+
+            <TextView
+                android:id="@+id/activity_detail_field_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Fecha evaluacion: " />
+
+
 
         <Button
             android:id="@+id/activity_detail_btn_delete"

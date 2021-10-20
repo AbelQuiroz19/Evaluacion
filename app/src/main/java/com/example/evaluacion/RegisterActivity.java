@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextInputLayout tilFirstName, tilLastName, tilEmail, tilPassword, tilBirthday;
+    private TextInputLayout tilFirstName, tilLastName, tilEmail, tilPassword, tilBirthday, tilHeight;
     private Button btnRegister;
 
     private final String DATE_PATTERN = "yyyy-MM-dd";
@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        tilHeight = findViewById(R.id.activity_register_field_height);
         tilFirstName = findViewById(R.id.activity_register_field_name);
         tilLastName = findViewById(R.id.activity_register_field_apellido);
         tilEmail = findViewById(R.id.activity_register_field_username);
@@ -46,12 +47,14 @@ public class RegisterActivity extends AppCompatActivity {
             String email = tilEmail.getEditText().getText().toString();
             String password = tilPassword.getEditText().getText().toString();
             String birthday = tilBirthday.getEditText().getText().toString();
+            String height = tilHeight.getEditText().getText().toString();
 
             boolean firstNameValid = !firstName.isEmpty();
             boolean lastNameValid = !lastName.isEmpty();
             boolean emailValid = !email.isEmpty();
             boolean passwordValid = !password.isEmpty();
             boolean birthdayValid = !birthday.isEmpty();
+            boolean heightValid = !height.isEmpty();
 
 
             if (!firstNameValid) {
@@ -83,10 +86,15 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 tilBirthday.setError(null);
                 tilBirthday.setErrorEnabled(false);
+            }if (!heightValid) {
+                tilHeight.setError("Campo obligatorio");
+            } else {
+                tilHeight.setError(null);
+                tilHeight.setErrorEnabled(false);
             }
 
 
-            if (firstNameValid && lastNameValid && emailValid && passwordValid && birthdayValid) {
+            if (firstNameValid && lastNameValid && emailValid && passwordValid && birthdayValid && heightValid) {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
 
                 Date birthdayDate = null;
@@ -96,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                User user = new User(firstName, lastName, email, birthdayDate);
+                User user = new User(firstName, lastName, email, birthdayDate, height);
                 user.setPassword(password);
 
                 AuthController controller = new AuthController(view.getContext());

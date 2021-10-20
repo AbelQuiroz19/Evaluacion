@@ -8,7 +8,7 @@ import com.example.evaluacion.models.UserEntity;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT id, first_name, last_name, username, birthday, password FROM users WHERE username = :username LIMIT 1")
+    @Query("SELECT id, first_name, last_name, username, birthday, password, height FROM users WHERE username = :username LIMIT 1")
     UserEntity findByUsername (String username);
 
     @Insert

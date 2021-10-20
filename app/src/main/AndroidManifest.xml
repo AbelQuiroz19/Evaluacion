@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evaluacion">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".NewEvaluationActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"

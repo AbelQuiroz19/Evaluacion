@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             boolean passwordValid = !password.isEmpty();
 
             if (!UserNameValid) {
-                tilUsername.setError("El nombre de usuario es inválido");
+                tilUsername.setError("Campo requerido");
             } else {
                 tilUsername.setError(null);
                 tilUsername.setErrorEnabled(false);

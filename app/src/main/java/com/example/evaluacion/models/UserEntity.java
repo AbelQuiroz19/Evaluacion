@@ -27,14 +27,18 @@ public class UserEntity  implements  IUser{
     @ColumnInfo(name = "password")
     private String password;
 
+    @ColumnInfo(name = "height")
+    private String height;
 
-    public UserEntity(long id, String firstName, String lastName, String username, Date birthday, String password) {
+
+    public UserEntity(long id, String firstName, String lastName, String username, Date birthday, String password, String height) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.birthday = birthday;
         this.password = password;
+        this.height = height;
     }
 
     public long getId() {
@@ -58,5 +62,7 @@ public class UserEntity  implements  IUser{
     }
 
     public String getPassword() { return password; }
+
+    public String getHeight() { return height; }
 
 }

@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.evaluacion.controllers.AuthController;
+import com.example.evaluacion.controllers.EvaluationController;
 import com.example.evaluacion.models.Evaluation;
 import com.example.evaluacion.ui.DatePickerFragment;
 import com.example.evaluacion.ui.EvaluationAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout tilDateOne, tilDateTwo;
     private ListView LvEvaluations;
     private AuthController authController;
-
-    private List<Evaluation> evaluationList = new ArrayList<>();
-
+    private EvaluationController evaluationController;
+    private TextView tvClearFilter;
+    private final String DATE_PATTERN = "yyyy-MM-dd";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
         LvEvaluations = findViewById(R.id.activity_main_lv_evaluations);
         btnConsult = findViewById(R.id.main_activity_btn_consult);
-        tilDateOne = findViewById(R.id.DateOne);
-        tilDateTwo = findViewById(R.id.DateTwo);
+        tilDateOne = findViewById(R.id.activity_main_DateOne);
+        tilDateTwo = findViewById(R.id.activity_main_DateTwo);
         btnClose = findViewById(R.id.main_activity_btn_close);
+        tvClearFilter = findViewById(R.id.activity_main_clear_filter);
 
         authController = new AuthController(this);
+        evaluationController = new EvaluationController(this);
 
-        for (int x = 0; x < 10; ++x) {
-            Evaluation newEvaluation = new Evaluation(String.format("Altura: %d", x), String.format("Peso: %d", x));
-            newEvaluation.setId(x);
-            evaluationList.add(newEvaluation);
-        }
+        List<Evaluation> evaluationList = evaluationController.getAll();
 
         EvaluationAdapter adapter = new EvaluationAdapter(this, evaluationList);
 
@@ -64,16 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
         }));
 
-        btnConsult.setOnClickListener(view -> {
-            Toast.makeText(view.getContext(), "consultando", Toast.LENGTH_SHORT).show();
-        });
-
         btnInsert = findViewById(R.id.main_activity_btn_insert);
 
 
         btnInsert.setOnClickListener(view -> {
             Toast.makeText(view.getContext(), "Moviendo a ingresar", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(view.getContext(), HistoryActivity.class);
+            Intent i = new Intent(view.getContext(), NewEvaluationActivity.class);
             startActivity(i);
 
         });
@@ -86,8 +83,71 @@ public class MainActivity extends AppCompatActivity {
             DatePickerFragment.showDatePickerDialog(this, tilDateTwo, new Date());
         });
 
+        btnConsult.setOnClickListener(view -> {
+            String oneStr = tilDateOne.getEditText().getText().toString();
+            String twoStr = tilDateTwo.getEditText().getText().toString();
+
+            boolean validOne = !oneStr.isEmpty();
+            boolean validTwo = !twoStr.isEmpty();
+
+            if (validOne && validTwo){
+                SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
+
+                try {
+                   Date one = dateFormatter.parse(oneStr);
+                   Date two = dateFormatter.parse(twoStr);
+
+                    List<Evaluation> evaluationRangeList = evaluationController.getRange(one, two);
+                    EvaluationAdapter rangeAdapter = new EvaluationAdapter(this, evaluationRangeList);
+
+                    LvEvaluations.setAdapter(rangeAdapter);
+
+                    LvEvaluations.setOnItemClickListener(((adapterView, rangeView, index, id) -> {
+
+                        Evaluation evaluation = evaluationRangeList.get(index);
+
+                        Intent i = new Intent(rangeView.getContext(), DetailActivity.class);
+                        i.putExtra("evaluation", evaluation);
+                        rangeView.getContext().startActivity(i);
+
+                    }));
+
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
         btnClose.setOnClickListener(view -> { authController.logout(); });
 
+        tvClearFilter.setOnClickListener(view ->{
+            LvEvaluations.setAdapter(adapter);
+        });
+
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        List<Evaluation> evaluationList = evaluationController.getAll();
+        EvaluationAdapter adapter = new EvaluationAdapter(this, evaluationList);
+
+        LvEvaluations.setAdapter(adapter);
+
+        LvEvaluations.setOnItemClickListener(((adapterView, view, index, id) -> {
+
+            Evaluation evaluation = evaluationList.get(index);
+
+            Intent i = new Intent(view.getContext(), DetailActivity.class);
+            i.putExtra("evaluation", evaluation);
+            view.getContext().startActivity(i);
+
+        }));
 
     }
 

@@ -14,7 +14,8 @@ public class UserMapping {
                 this.user.getLastName(),
                 this.user.getUsername(),
                 this.user.getBirthday(),
-                this.user.getPassword()
+                this.user.getPassword(),
+                this.user.getHeight()
         );
     }
 
@@ -23,7 +24,8 @@ public class UserMapping {
                 this.user.getFirstName(),
                 this.user.getLastName(),
                 this.user.getUsername(),
-                this.user.getBirthday()
+                this.user.getBirthday(),
+                this.user.getHeight()
         );
         userBase.setPassword(this.user.getPassword());
         userBase.setId(this.user.getId());

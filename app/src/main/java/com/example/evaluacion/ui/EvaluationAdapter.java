@@ -11,11 +11,13 @@ import com.example.evaluacion.R;
 import com.example.evaluacion.models.Evaluation;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class EvaluationAdapter extends BaseAdapter {
     private Context ctx;
     private List<Evaluation> evaluationList;
+    private final String DATE_PATTERN = "yyyy-MM-dd";
 
     public EvaluationAdapter(Context ctx, List<Evaluation> evaluationList) {
         this.ctx = ctx;
@@ -48,10 +50,20 @@ public class EvaluationAdapter extends BaseAdapter {
         TextView tvHeight = view.findViewById(R.id.item_evaluation_tv_Height);
         TextView tvId = view.findViewById(R.id.item_evaluation_tv_id);
         TextView tvWeight = view.findViewById(R.id.item_evaluation_tv_Weight);
+        TextView tvDate = view.findViewById(R.id.item_evaluation_tv_Date);
+        TextView tvImc = view.findViewById(R.id.item_evaluation_tv_imc);
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
+
+        String Weight = Double.toString(evaluation.getWeight());
+        String Height = Double.toString(evaluation.getHeight());
+        String Imc = Double.toString(evaluation.getImc());
 
         tvId.setText(Long.toString(evaluation.getId()));
-        tvHeight.setText(evaluation.getHeight());
-        tvWeight.setText(evaluation.getWeight());
+        tvHeight.setText(String.format("Altura : %s", Height));
+        tvWeight.setText(String.format("Peso : %s", Weight));
+        tvDate.setText(String.format("Fecha de evaluacion : %s", evaluation.getStringDate()));
+        tvImc.setText(String.format("Imc : %s", Imc));
 
         return view;
 
