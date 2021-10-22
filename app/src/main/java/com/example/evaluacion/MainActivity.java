@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnConsult;
     private Button btnInsert;
     private Button btnClose;
-    private TextInputLayout tilDateOne, tilDateTwo;
+    private TextInputLayout tilDateFrom, tilDateTo;
     private ListView LvEvaluations;
     private AuthController authController;
     private EvaluationController evaluationController;
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         LvEvaluations = findViewById(R.id.activity_main_lv_evaluations);
         btnConsult = findViewById(R.id.main_activity_btn_consult);
-        tilDateOne = findViewById(R.id.activity_main_DateOne);
-        tilDateTwo = findViewById(R.id.activity_main_DateTwo);
+        tilDateFrom = findViewById(R.id.activity_main_Date_from);
+        tilDateTo = findViewById(R.id.activity_main_Date_to);
         btnClose = findViewById(R.id.main_activity_btn_close);
         tvClearFilter = findViewById(R.id.activity_main_clear_filter);
 
@@ -75,29 +75,29 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        tilDateOne.getEditText().setOnClickListener(view -> {
-            DatePickerFragment.showDatePickerDialog(this, tilDateOne, new Date());
+        tilDateFrom.getEditText().setOnClickListener(view -> {
+            DatePickerFragment.showDatePickerDialog(this, tilDateFrom, new Date());
         });
 
-        tilDateTwo.getEditText().setOnClickListener(view -> {
-            DatePickerFragment.showDatePickerDialog(this, tilDateTwo, new Date());
+        tilDateTo.getEditText().setOnClickListener(view -> {
+            DatePickerFragment.showDatePickerDialog(this, tilDateTo, new Date());
         });
 
         btnConsult.setOnClickListener(view -> {
-            String oneStr = tilDateOne.getEditText().getText().toString();
-            String twoStr = tilDateTwo.getEditText().getText().toString();
+            String fromStr = tilDateFrom.getEditText().getText().toString();
+            String toStr = tilDateTo.getEditText().getText().toString();
 
-            boolean validOne = !oneStr.isEmpty();
-            boolean validTwo = !twoStr.isEmpty();
+            boolean validFrom = !fromStr.isEmpty();
+            boolean validTo = !toStr.isEmpty();
 
-            if (validOne && validTwo){
+            if (validFrom && validTo){
                 SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
 
                 try {
-                   Date one = dateFormatter.parse(oneStr);
-                   Date two = dateFormatter.parse(twoStr);
+                   Date from = dateFormatter.parse(fromStr);
+                   Date to = dateFormatter.parse(toStr);
 
-                    List<Evaluation> evaluationRangeList = evaluationController.getRange(one, two);
+                    List<Evaluation> evaluationRangeList = evaluationController.getRange(from, to);
                     EvaluationAdapter rangeAdapter = new EvaluationAdapter(this, evaluationRangeList);
 
                     LvEvaluations.setAdapter(rangeAdapter);

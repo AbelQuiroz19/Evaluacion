@@ -81,10 +81,10 @@ public class EvaluationController {
 
         return evaluationList;
     }
-    public List<Evaluation> getRange(Date one, Date two) {
+    public List<Evaluation> getRange(Date from, Date to) {
         AuthController authController = new AuthController(ctx);
         User user = authController.getUserSession();
-        List<EvaluationEntity> evaluationEntityList = evaluationDao.findByRange(one, two, user.getId());
+        List<EvaluationEntity> evaluationEntityList = evaluationDao.findByRange(from, to, user.getId());
         List<Evaluation> evaluationList = new ArrayList<>();
 
         for (EvaluationEntity evaluationEntity : evaluationEntityList) {

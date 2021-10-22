@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.evaluacion.controllers.AuthController;
 import com.example.evaluacion.controllers.EvaluationController;
 import com.example.evaluacion.models.Evaluation;
+import com.example.evaluacion.models.User;
 
 import java.text.SimpleDateFormat;
 
@@ -20,7 +22,6 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnDelete;
     private Button btnGoBack;
     private TextView tvId, tvWeight, tvHeight, tvDate, tvImc;
-    private final String DATE_PATTERN = "yyyy-MM-dd";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +38,15 @@ public class DetailActivity extends AppCompatActivity {
         tvDate = findViewById(R.id.activity_detail_field_date);
         tvImc = findViewById(R.id.activity_detail_field_imc);
 
-
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_PATTERN);
-
-        String weight = dateFormatter.format(evaluation.getWeight());
-        String Height = dateFormatter.format(evaluation.getHeight());
-        String Imc =  dateFormatter.format(evaluation.getImc());
+        String weightStr = Double.toString(evaluation.getWeight());
+        String heightStr = Double.toString(evaluation.getHeight());
+        String imcStr =  Double.toString(evaluation.getImc());
 
         tvId.setText(String.format("Evaluacion n°: ", evaluation.getId()));
-        tvWeight.setText(weight);
-        tvHeight.setText(Height);
+        tvWeight.setText(weightStr);
+        tvHeight.setText(heightStr);
         tvDate.setText(evaluation.getStringDate());
-        tvImc.setText(Imc);
+        tvImc.setText(imcStr);
 
         btnDelete.setOnClickListener(view -> {
             EvaluationController controller = new EvaluationController(view.getContext());

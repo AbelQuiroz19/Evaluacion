@@ -14,7 +14,7 @@ import com.example.evaluacion.models.EvaluationEntity;
 import com.example.evaluacion.models.UserEntity;
 import com.example.evaluacion.utils.Converters;
 
-@Database(entities = {UserEntity.class, EvaluationEntity.class}, version = 13)
+@Database(entities = {UserEntity.class, EvaluationEntity.class}, version = 14)
 @TypeConverters({Converters.class})
 public abstract class GymAppDatabase extends RoomDatabase {
     private static final String DB_NAME = "gym_app_db";

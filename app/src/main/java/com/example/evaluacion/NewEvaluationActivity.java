@@ -56,13 +56,13 @@ public class NewEvaluationActivity extends AppCompatActivity {
 
             User user = authController.getUserSession();
 
-            double dobleHeight = Double.parseDouble(Height);
+            double doubleHeight = Double.parseDouble(Height);
 
-            double dobleWeight = Double.parseDouble(weight);
+            double doubleWeight = Double.parseDouble(weight);
 
-            double imc = dobleWeight / ( dobleHeight * dobleHeight);
+            double imc = doubleWeight / ( doubleHeight * doubleHeight);
 
-            Evaluation evaluation = new Evaluation(dobleHeight, dobleWeight, dateDate, user.getId(), imc);
+            Evaluation evaluation = new Evaluation(doubleHeight, doubleWeight, dateDate, user.getId(), imc);
 
             EvaluationController controller = new EvaluationController(view.getContext());
 

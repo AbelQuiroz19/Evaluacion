@@ -28,17 +28,16 @@ public class LoginActivity extends AppCompatActivity {
         tilPassword = findViewById(R.id.activity_login_field_password);
 
         authController = new AuthController(this);
-        authController.CheckUserSession();
 
         btnLogin.setOnClickListener(view -> {
             Toast.makeText(view.getContext(), "Iniciando sesión", Toast.LENGTH_SHORT).show();
             String username = tilUsername.getEditText().getText().toString();
             String password = tilPassword.getEditText().getText().toString();
 
-            boolean UserNameValid = !username.isEmpty();
+            boolean userNameValid = !username.isEmpty();
             boolean passwordValid = !password.isEmpty();
 
-            if (!UserNameValid) {
+            if (!userNameValid) {
                 tilUsername.setError("Campo requerido");
             } else {
                 tilUsername.setError(null);
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 tilPassword.setErrorEnabled(false);
             }
 
-            if (UserNameValid && passwordValid) {
+            if (userNameValid && passwordValid) {
                 AuthController controller = new AuthController(view.getContext());
                 controller.login(username, password);
             } else {

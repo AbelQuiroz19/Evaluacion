@@ -37,7 +37,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/activity_main_DateOne"
+                    android:id="@+id/activity_main_Date_from"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20sp">
@@ -50,7 +50,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/activity_main_DateTwo"
+                    android:id="@+id/activity_main_Date_to"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content">
 
